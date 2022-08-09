@@ -18,7 +18,10 @@ export function Post() {
       <p>Lorem Ipsum </p>
       <p>is simply dummy text of the printing and typesetting industry.</p>
       <p><a href='#'>typesetting industry.</a></p>
-      <p><a href='#'>#is #simply</a></p>
+      <p>
+        <a href='#'>#is</a>{' '}
+        <a href='#'>#simply</a>
+      </p>
      </div>
     </article>
   ) 
