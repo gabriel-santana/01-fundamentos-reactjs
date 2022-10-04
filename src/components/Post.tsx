@@ -20,9 +20,7 @@ content: [{
 }]
 }) {
 
-  const [comments, setComments] = useState([
-    'Post muito bancana'
-  ])
+  const [comments, setComments] = useState(['usu'])
 
   const [newCommentText, setNewCommentText] = useState('');
 
@@ -33,9 +31,16 @@ content: [{
   function handleCreateNewComment() {
     event?.preventDefault();
 
-  
     setComments([...comments, newCommentText]);
     setNewCommentText('');
+  }
+
+  function deleteComment(commentToDelete: string) {
+    const commentsWithoutDeletedOne = comments.filter(comment => {
+      return comment !== commentToDelete;
+    });
+
+    setComments(commentsWithoutDeletedOne);
   }
 
   const publishedDateFormatted = format(publishedAt, "d 'de' LLLL 'às' HH:mm'h'", {
@@ -78,6 +83,7 @@ content: [{
         value={newCommentText}
         placeholder='Deixe um comentário'
         onChange={handleNewCommentChange}
+        required
       />
 
       <footer>
@@ -87,7 +93,13 @@ content: [{
 
      <div className={styles.commentList}>
       {comments.map(comment => {
-        return <Comment key={comment} content={comment} />
+        return (
+          <Comment 
+            key={comment} 
+            content={comment} 
+            onDeleteComment={deleteComment} 
+          />
+        )
       })}
       
      </div>
